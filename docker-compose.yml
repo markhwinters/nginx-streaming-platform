@@ -1,0 +1,37 @@
+services: 
+  haproxy:
+    image: haproxy:2.8
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./certs/localhost.crt:/usr/local/etc/haproxy/certs/localhost.crt:ro
+      - ./certs/localhost.crt.key:/usr/local/etc/haproxy/certs/localhost.crt.key:ro
+    depends_on:
+      - varnish
+      - api
+      - frontend
+
+  varnish:
+    image: varnish:7.4
+    volumes:
+      - ./varnish/default.vcl:/etc/varnish/default.vcl:ro
+    depends_on:
+      - nginx-media
+
+  nginx-media:
+    image: nginx:alpine
+    volumes:
+      - ./nginx-media/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./media:/var/www/media
+
+  api:
+    build: ./api
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - varnish

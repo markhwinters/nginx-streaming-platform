@@ -1,0 +1,13 @@
+certs/
+media/
+
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.*
+
+# build output
+dist/
+build/
