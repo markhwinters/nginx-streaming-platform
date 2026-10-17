@@ -56,8 +56,8 @@ type VideoJsWithVhs = typeof videojs & {
   }
 }
 
-const playlistUrl = '/video/movie001-video/output.m3u8'
-const posterUrl = '/video/movie001-video/poster.jpg'
+const playlistUrl = '/video/movie001/output.m3u8'
+const posterUrl = '/video/movie001/poster.jpg'
 
 function getRequestPath(url: string | undefined) {
   return url ? new URL(url, window.location.href).pathname : ''
@@ -262,7 +262,7 @@ function VideoPlayer() {
           <div className="metric-card">
             <span className="metric-label">PLAYBACK</span>
             <span className="metric-value playback-value">{metrics.playback}</span>
-            <span className="metric-note">movie001-video / output.m3u8</span>
+            <span className="metric-note">movie001 / output.m3u8</span>
           </div>
         </div>
         <div className="footer-note">

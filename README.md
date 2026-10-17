@@ -32,7 +32,7 @@ Put your source video in a local working folder and run FFmpeg there. Replace `i
 ffmpeg -i "input.mp4" -c:v libx264 -profile:v baseline -pix_fmt yuv420p -c:a aac -profile:a aac_low -b:a 160k -ar 48000 -ac 2 -f hls -hls_time 4 -hls_playlist_type vod -hls_segment_filename "segment_%03d.ts" "output.m3u8"
 ```
 
-When FFmpeg finishes, manually copy `output.m3u8` and all generated `segment_*.ts` files into the project’s `media\movie001-video` folder, replacing the existing stream files. Restart Varnish to clear cached media:
+When FFmpeg finishes, manually copy `output.m3u8` and all generated `segment_*.ts` files into the project’s `media\movie001` folder, replacing the existing stream files. Restart Varnish to clear cached media:
 
 ```powershell
 docker compose restart varnish
