@@ -14,7 +14,7 @@ services:
       - frontend
 
   varnish:
-    image: varnish:7.4
+    image: varnish:9.1
     volumes:
       - ./varnish/default.vcl:/etc/varnish/default.vcl:ro
     depends_on:
